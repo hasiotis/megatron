@@ -45,5 +45,12 @@ class UnoconvResource(Resource):
         response.headers['Content-Disposition'] = "inline; filename=converted.%s" % (output_format, )
         return response
 
+class Home(Resource):
+
+    def get(self):
+        return {'hello': 'world'}
+
+
 api.add_resource(UnoconvResource, '/unoconv/<string:output_format>/')
+api.add_resource(Home, '/')
 
