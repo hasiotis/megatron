@@ -43,8 +43,8 @@ az role assignment create --assignee ${CLIENT_ID} --role Reader --scope ${ACR_ID
 
 echo "Creating DNS support"
 TENANT_ID=`az account show -o tsv --query tenantId`
-SUBSCRIPTION_ID=`az group show --name production -o tsv --query id | cut -f 3 -d/`
-SUBSCRIPTION_ID_FULL=`az group show --name production -o tsv --query id`
+SUBSCRIPTION_ID=`az group show --name ${AKS_RESOURCE_GROUP} -o tsv --query id | cut -f 3 -d/`
+SUBSCRIPTION_ID_FULL=`az group show --name ${AKS_RESOURCE_GROUP} -o tsv --query id`
 
 AAD_CLIENT_SECRET=`az ad sp create-for-rbac --role=Contributor --scopes=${SUBSCRIPTION_ID_FULL} -n ExternalDnsServicePrincipal -o tsv --query password`
 APP_ID=`az ad sp list --query "[?displayName == 'ExternalDnsServicePrincipal'].appId" -o tsv`
@@ -57,8 +57,10 @@ cat <<EOF
   "subscriptionId": "${SUBSCRIPTION_ID}",
   "aadClientId": "${AAD_CLIENT_ID}",
   "aadClientSecret": "${AAD_CLIENT_SECRET}",
-  "resourceGroup": "production",
+  "resourceGroup": "${AKS_RESOURCE_GROUP}",
 }
 EOF
 ) > azure.json
 kubectl create secret generic azure-config-file --from-file=azure.json
+rm -rf azure.json
+kubectl apply -f external-dns.yaml
