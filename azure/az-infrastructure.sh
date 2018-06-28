@@ -14,5 +14,5 @@ az acr create --resource-group ${ACR_RESOURCE_GROUP}  --name ${ACR_NAME} --sku B
 az acr show --name ${ACR_NAME} --query loginServer
 az network dns zone create --resource-group ${ACR_RESOURCE_GROUP} -n hasiotis.eu
 
-echo "az acr login --name ${ACR_NAME}"
+az acr login --name ${ACR_NAME}
 echo "docker push ${ACR_NAME}.azurecr.io/megatron:1.0.0"
