@@ -1,18 +1,17 @@
 #!/bin/bash
 
 # Global
-ACR_NAME=hasiotis
 MAIN_DOMAIN=hasiotis.eu
+ACR_NAME=hasiotis
 ACR_RESOURCE_GROUP=infrastructure
 
 # Cluster
-AKS_CLUSTER_NAME="production"
-AKS_RESOURCE_GROUP=${AKS_CLUSTER_NAME}
-AKS_CLUSTER_CODE="prd"
 LOCATION=westeurope
 CLUSTER_DOMAIN=${AKS_CLUSTER_CODE}.${MAIN_DOMAIN}
 
-# Which version.....: "az aks get-versions -l westeurope -o table"
+AKS_CLUSTER_NAME="production"
+AKS_RESOURCE_GROUP=${AKS_CLUSTER_NAME}
+AKS_CLUSTER_CODE="prd"
 AKS_CLUSTER_VERSION=1.10.3
 AKS_CLUSTER_NODE_COUNT=1
 
