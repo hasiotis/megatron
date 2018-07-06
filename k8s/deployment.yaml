@@ -15,7 +15,7 @@ spec:
         emptyDir: {}
       containers:
       - name: unoconv
-        image: megatron:1.0.0
+        image: hasiotis.azurecr.io/megatron:1.0.0
         imagePullPolicy: IfNotPresent
         command: ["/usr/bin/unoconv"]
         args: ["--listener", "--server=127.0.0.1", "--port=2002", "--verbose"]
@@ -23,7 +23,7 @@ spec:
         - name: sharedfs
           mountPath: /tmp
       - name: worker
-        image: megatron:1.0.0
+        image: hasiotis.azurecr.io/megatron:1.0.0
         imagePullPolicy: IfNotPresent
         command: ["/usr/local/bin/gunicorn"]
         args: ["-w", "1", "-b", "0.0.0.0:5000", "--threads", "5", "app:app"]

@@ -6,8 +6,5 @@ metadata:
 spec:
   ports:
   - port: 5000
-    targetPort: 5000
-    nodePort: 32000
   selector:
     app: megatron
-  type: LoadBalancer
