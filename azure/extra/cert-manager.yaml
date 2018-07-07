@@ -119,7 +119,7 @@ spec:
       serviceAccountName: cert-manager
       containers:
         - name: cert-manager
-          image: "quay.io/jetstack/cert-manager-controller:canary"
+          image: "quay.io/jetstack/cert-manager-controller:v0.3.2"
           imagePullPolicy: Always
           args:
           - --cluster-resource-namespace=$(POD_NAMESPACE)
