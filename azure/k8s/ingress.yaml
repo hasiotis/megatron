@@ -16,7 +16,7 @@ spec:
   - host: megatron.prd.hasiotis.eu
     http:
       paths:
-      - path: /*
+      - path: /
         backend:
           serviceName: megatron
           servicePort: 5000
