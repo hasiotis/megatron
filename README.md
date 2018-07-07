@@ -12,12 +12,12 @@ minikube addons enable freshpod
 Create the docker image (directly on minikube)
 ```
 eval $(minikube docker-env)
-docker build -t hasiotis.azurecr.io/megatron:1.0.0 .
+docker build -t megatron:1.0.0 .
 ```
 
 Deploy on minikube:
 ```
-kubectl apply -f k8s/
+kubectl apply -f minikube/
 ```
 
 Check that it works:

@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: megatron-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: megatron.prd.hasiotis.eu
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: megatron
+          servicePort: 5000

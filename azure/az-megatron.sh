@@ -63,3 +63,4 @@ EOF
 kubectl create secret generic azure-config-file --from-file=azure.json
 rm -rf azure.json
 kubectl apply -f external-dns.yaml
+kubectl apply -f nginx-ingress.yaml
