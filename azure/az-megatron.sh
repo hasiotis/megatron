@@ -60,7 +60,12 @@ cat <<EOF
 }
 EOF
 ) > azure.json
-kubectl create secret generic azure-config-file --from-file=azure.json
+kubectl create namespace external-dns
+kubectl create secret generic azure-config-file --from-file=azure.json --namespace external-dns
 rm -rf azure.json
-kubectl apply -f external-dns.yaml
-kubectl apply -f nginx-ingress.yaml
+
+kubectl apply -f extra/external-dns.yaml
+kubectl apply -f extra/nginx-ingress.yaml
+kubectl apply -f extra/cert-manager.yaml
+kubectl create namespace megatron
+kubectl apply -f extra/letsencrypt-issuer.yaml

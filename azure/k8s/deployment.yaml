@@ -3,6 +3,7 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: megatron
+  namespace: megatron
 spec:
   replicas: 1
   template:

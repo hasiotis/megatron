@@ -2,10 +2,17 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: megatron-ingress
+  namespace: megatron
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
     kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    certmanager.k8s.io/cluster-issuer: letsencrypt
+    kubernetes.io/tls-acme: "true"
 spec:
+  tls:
+  - hosts:
+    - megatron.prd.hasiotis.eu
+    secretName: tls-cert
   rules:
   - host: megatron.prd.hasiotis.eu
     http:

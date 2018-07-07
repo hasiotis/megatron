@@ -1,11 +1,10 @@
 ---
-
 apiVersion: v1
 kind: Namespace
 metadata:
   name: ingress-nginx
----
 
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -46,8 +45,8 @@ spec:
           requests:
             cpu: 10m
             memory: 20Mi
----
 
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -61,8 +60,8 @@ spec:
     targetPort: 8080
   selector:
     app: default-http-backend
----
 
+---
 kind: ConfigMap
 apiVersion: v1
 metadata:
@@ -70,22 +69,22 @@ metadata:
   namespace: ingress-nginx
   labels:
     app: ingress-nginx
----
 
+---
 kind: ConfigMap
 apiVersion: v1
 metadata:
   name: tcp-services
   namespace: ingress-nginx
----
 
+---
 kind: ConfigMap
 apiVersion: v1
 metadata:
   name: udp-services
   namespace: ingress-nginx
----
 
+---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -93,7 +92,6 @@ metadata:
   namespace: ingress-nginx
 
 ---
-
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
@@ -147,7 +145,6 @@ rules:
       - update
 
 ---
-
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: Role
 metadata:
@@ -190,7 +187,6 @@ rules:
       - get
 
 ---
-
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
@@ -206,7 +202,6 @@ subjects:
     namespace: ingress-nginx
 
 ---
-
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
@@ -219,13 +214,13 @@ subjects:
   - kind: ServiceAccount
     name: nginx-ingress-serviceaccount
     namespace: ingress-nginx
----
 
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: nginx-ingress-controller
-  namespace: ingress-nginx 
+  namespace: ingress-nginx
 spec:
   replicas: 1
   selector:
